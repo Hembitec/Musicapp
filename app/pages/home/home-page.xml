@@ -1,0 +1,74 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Music App">
+        <ActionBar.actionItems>
+            <ActionItem tap="{{ onSearchTap }}" ios.systemIcon="11" android.systemIcon="ic_menu_search" />
+            <ActionItem tap="{{ onSettingsTap }}" ios.systemIcon="16" android.systemIcon="ic_menu_preferences" />
+        </ActionBar.actionItems>
+    </ActionBar>
+
+    <TabView selectedIndex="{{ selectedTabIndex }}" androidTabsPosition="bottom">
+        <TabView.items>
+            <TabViewItem title="Discover">
+                <TabViewItem.view>
+                    <GridLayout>
+                        <ListView items="{{ recommendedSongs }}" class="list-group">
+                            <ListView.itemTemplate>
+                                <GridLayout columns="auto, *, auto" class="list-group-item p-4">
+                                    <Image src="{{ albumArt }}" width="50" height="50" class="rounded" col="0" />
+                                    <StackLayout col="1" class="ml-4">
+                                        <Label text="{{ title }}" class="font-semibold" />
+                                        <Label text="{{ artist }}" class="text-gray-600" />
+                                    </StackLayout>
+                                    <Button text="⋮" tap="{{ $parent.onSongOptionsTap }}" class="text-gray-600" col="2" />
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+
+            <TabViewItem title="Library">
+                <TabViewItem.view>
+                    <GridLayout rows="auto, *">
+                        <GridLayout columns="*, *" class="p-4" row="0">
+                            <Button text="Playlists" tap="{{ onPlaylistsTap }}" class="m-1" col="0" />
+                            <Button text="Downloads" tap="{{ onDownloadsTap }}" class="m-1" col="1" />
+                        </GridLayout>
+                        <ListView items="{{ librarySongs }}" row="1" class="list-group">
+                            <ListView.itemTemplate>
+                                <GridLayout columns="auto, *, auto" class="list-group-item p-4">
+                                    <Image src="{{ albumArt }}" width="50" height="50" class="rounded" col="0" />
+                                    <StackLayout col="1" class="ml-4">
+                                        <Label text="{{ title }}" class="font-semibold" />
+                                        <Label text="{{ artist }}" class="text-gray-600" />
+                                    </StackLayout>
+                                    <Button text="⋮" tap="{{ $parent.onSongOptionsTap }}" class="text-gray-600" col="2" />
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+
+            <TabViewItem title="Now Playing">
+                <TabViewItem.view>
+                    <GridLayout rows="*, auto">
+                        <StackLayout row="0" class="p-8">
+                            <Image src="{{ currentTrack.albumArt }}" class="h-64 rounded-lg" />
+                            <Label text="{{ currentTrack.title }}" class="text-2xl font-bold text-center mt-4" />
+                            <Label text="{{ currentTrack.artist }}" class="text-lg text-gray-600 text-center" />
+                        </StackLayout>
+                        <GridLayout rows="auto, auto" row="1" class="p-4">
+                            <Slider value="{{ playbackProgress }}" minValue="0" maxValue="100" row="0" />
+                            <GridLayout columns="auto, *, auto" row="1" class="mt-4">
+                                <Button text="⏮" tap="{{ onPreviousTap }}" class="text-2xl" col="0" />
+                                <Button text="{{ isPlaying ? '⏸' : '▶' }}" tap="{{ onPlayPauseTap }}" class="text-3xl" col="1" />
+                                <Button text="⏭" tap="{{ onNextTap }}" class="text-2xl" col="2" />
+                            </GridLayout>
+                        </GridLayout>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+        </TabView.items>
+    </TabView>
+</Page>

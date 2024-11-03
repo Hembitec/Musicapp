@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Search">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <GridLayout rows="auto" columns="*, auto" class="p-2" row="0">
+            <TextField hint="Search songs..." text="{{ searchQuery }}" 
+                      returnKeyType="search" 
+                      submit="{{ onSearch }}"
+                      class="p-3 bg-white rounded-lg" col="0" />
+            <Button text="🎤" tap="{{ onVoiceSearch }}" 
+                    class="mx-2 p-3 bg-blue-500 text-white rounded-lg" col="1" />
+        </GridLayout>
+
+        <GridLayout row="1" class="{{ isSearching ? 'hidden' : '' }}">
+            <ListView items="{{ searchResults }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="list-group-item p-4">
+                        <Image src="{{ albumArt }}" width="50" height="50" class="rounded" col="0" />
+                        <StackLayout col="1" class="ml-4">
+                            <Label text="{{ title }}" class="font-semibold" />
+                            <Label text="{{ artist }} • {{ source }}" class="text-gray-600" />
+                            <Label text="{{ duration }}" class="text-xs text-gray-500" />
+                        </StackLayout>
+                        <Button text="⬇️" tap="{{ $parent.onDownloadTap }}" 
+                                class="text-lg" col="2" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+
+        <ActivityIndicator busy="{{ isSearching }}" row="1" />
+    </GridLayout>
+</Page>

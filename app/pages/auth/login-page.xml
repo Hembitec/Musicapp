@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <StackLayout class="p-6">
+        <Label text="Music App" class="text-3xl font-bold text-center mb-8" />
+        
+        <Button text="Sign in with Google" tap="{{ onGoogleSignIn }}" class="bg-white text-black font-semibold p-4 rounded-lg mb-4" />
+        
+        <GridLayout rows="auto, auto" columns="*, auto" class="mb-4">
+            <Label text="Email" row="0" col="0" class="text-sm text-gray-600" />
+            <TextField row="1" col="0" text="{{ email }}" hint="Enter your email" class="p-3 bg-white rounded" />
+        </GridLayout>
+        
+        <GridLayout rows="auto, auto" columns="*, auto" class="mb-6">
+            <Label text="Password" row="0" col="0" class="text-sm text-gray-600" />
+            <TextField row="1" col="0" text="{{ password }}" secure="true" hint="Enter your password" class="p-3 bg-white rounded" />
+        </GridLayout>
+        
+        <Button text="Sign In" tap="{{ onEmailSignIn }}" class="bg-blue-500 text-white font-semibold p-4 rounded-lg mb-3" />
+        <Button text="Sign Up" tap="{{ onEmailSignUp }}" class="bg-green-500 text-white font-semibold p-4 rounded-lg" />
+    </StackLayout>
+</Page>

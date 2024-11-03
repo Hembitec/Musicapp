@@ -1,0 +1,63 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Settings">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Account Section -->
+            <Label text="Account" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white rounded-lg p-4 mb-6">
+                <Label text="{{ userEmail }}" class="text-gray-600" />
+                <Button text="Sign Out" tap="{{ onSignOutTap }}" 
+                        class="bg-red-500 text-white mt-2" />
+            </StackLayout>
+
+            <!-- Storage Section -->
+            <Label text="Storage" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white rounded-lg p-4 mb-6">
+                <GridLayout columns="*, auto">
+                    <Label text="Storage Used" col="0" />
+                    <Label text="{{ storageUsage }}" class="text-gray-600" col="1" />
+                </GridLayout>
+                <Button text="Clear Cache" tap="{{ onClearCacheTap }}" 
+                        class="bg-gray-500 text-white mt-2" />
+            </StackLayout>
+
+            <!-- Playback Section -->
+            <Label text="Playback" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white rounded-lg p-4 mb-6">
+                <GridLayout rows="auto, auto" columns="*, auto">
+                    <Label text="Stream Quality" row="0" col="0" />
+                    <DropDown items="{{ qualities }}" 
+                             selectedIndex="{{ selectedQualityIndex }}"
+                             row="0" col="1" />
+                    
+                    <Label text="Download Quality" row="1" col="0" />
+                    <DropDown items="{{ qualities }}" 
+                             selectedIndex="{{ selectedDownloadQualityIndex }}"
+                             row="1" col="1" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Notifications Section -->
+            <Label text="Notifications" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white rounded-lg p-4 mb-6">
+                <GridLayout columns="*, auto">
+                    <Label text="Download Notifications" col="0" />
+                    <Switch checked="{{ downloadNotifications }}" col="1" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- About Section -->
+            <Label text="About" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white rounded-lg p-4">
+                <Label text="Version 1.0.0" class="text-gray-600" />
+                <Button text="Terms of Service" tap="{{ onTermsTap }}" 
+                        class="text-blue-500" />
+                <Button text="Privacy Policy" tap="{{ onPrivacyTap }}" 
+                        class="text-blue-500" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
